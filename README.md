@@ -45,20 +45,22 @@ background statement  in your XAML window definition.
 The XAML options
 ------------------------
 a) the background option
+
 	`<Window x:Class="MayaWpfThemeTest.WpfThemeTestWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Maya Theme Test" 
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		Title="Maya Theme Test" 
 		Height="900"
 		Width="656"
 		>
 	<Background="{DynamicResource WindowBrush}">`
 
 b) the style option (preferred)
+
 	`<Window x:Class="MayaWpfThemeTest.WpfThemeTestWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Maya Theme Test" 
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		Title="Maya Theme Test" 
 		Height="900"
 		Width="656"
 		Style="{DynamicResource MayaStyle}"
@@ -67,6 +69,7 @@ b) the style option (preferred)
 The Code approach
 ---------------------------
 c) changing the background color
+
 		WpfThemeTestWindow wnd;
 		wnd = new WpfThemeTestWindow ();
 		var bc = new BrushConverter();
@@ -74,15 +77,16 @@ c) changing the background color
 		wnd.Show ();
 
 d) changing the window icon for the Maya icon (optional)
+
 		WpfThemeTestWindow wnd;
 		wnd = new WpfThemeTestWindow ();
 		MayaTheme.SetMayaIcon (wnd);
 		wnd.Show ();
 
 
-
+--------
 Written by Cyrille Fauvel (Autodesk Developer Network)  
 http://www.autodesk.com/adn  
 http://around-the-corner.typepad.com/  
 
-<b>Note:</b> Maya 2014 requires using the VC 10.0 Service Pack 1 runtime and the .Net Framework 4.0. You can use Visual Studio 2012 to develop C# plug-ins, but have to use the .Net 4.0 framework.
+<b>Note:</b> Maya 2014 requires using the VC 10.0 Service Pack 1 runtime and the .Net Framework 4.0. You can use Visual Studio 2012/2013 to develop C# plug-ins, but have to use the .Net 4.0 framework.
