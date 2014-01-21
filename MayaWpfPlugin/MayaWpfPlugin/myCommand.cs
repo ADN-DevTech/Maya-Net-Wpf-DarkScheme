@@ -10,27 +10,26 @@
 
 //- Written by Cyrille Fauvel, Autodesk Developer Network (ADN)
 //- http://www.autodesk.com/joinadn
-//- December 30th, 2013
+//- January 20th, 2014
 //
 using System;
-using Autodesk.Maya;
 using Autodesk.Maya.Runtime;
 using Autodesk.Maya.OpenMaya;
+using Autodesk.Maya.Samples;
 
 // This line is mandatory to declare a new command in Maya
 // You need to change the last parameter without your own
 // node name and unique ID
-[assembly: MPxCommandClass (typeof (MayaWpfThemeTest.WpfThemeTestCmd), "WpfThemeTest")]
+[assembly: MPxCommandClass (typeof (Autodesk.Maya.Samples.MayaWpfPlugin.DAGExplorerCmd), "DAGExplorer")]
 
-namespace MayaWpfThemeTest {
-
+namespace Autodesk.Maya.Samples.MayaWpfPlugin {
 	// This class is instantiated by Maya each time when a command 
 	// is called by the user or a script.
-	public class WpfThemeTestCmd : MPxCommand, IMPxCommand {
-		public WpfThemeTestWindow wnd;
+	public class DAGExplorerCmd : MPxCommand, IMPxCommand {
+		public DAGExplorer wnd;
 
 		public override void doIt (MArgList argl) {
-			wnd = new WpfThemeTestWindow ();
+			wnd = new DAGExplorer ();
 			//MayaTheme.SetMayaIcon (wnd);
 			wnd.Show ();
 		}
