@@ -30,8 +30,10 @@ namespace MayaWpfThemeTest {
 	/// Interaction logic for WpfThemeTestWindow.xaml
 	/// </summary>
 	public partial class WpfThemeTestWindow : Window {
+
 		public WpfThemeTestWindow () {
 			InitializeComponent ();
 		}
+
 	}
 }

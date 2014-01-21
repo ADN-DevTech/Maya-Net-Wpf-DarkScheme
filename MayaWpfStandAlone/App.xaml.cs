@@ -19,7 +19,6 @@ using System.Data;
 using System.Linq;
 using System.Windows;
 
-using Autodesk.Maya.Runtime;
 using Autodesk.Maya.OpenMaya;
 using Autodesk.Maya;
 

@@ -13,7 +13,6 @@
 //- January 20th, 2014
 //
 using System;
-using Autodesk.Maya.Runtime;
 using Autodesk.Maya.OpenMaya;
 
 // This line is not mandatory, but improves loading performances

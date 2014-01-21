@@ -13,9 +13,7 @@
 //- January 20th, 2014
 //
 using System;
-using Autodesk.Maya.Runtime;
 using Autodesk.Maya.OpenMaya;
-using Autodesk.Maya.Samples;
 
 // This line is mandatory to declare a new command in Maya
 // You need to change the last parameter without your own

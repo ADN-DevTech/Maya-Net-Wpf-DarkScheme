@@ -14,7 +14,6 @@
 //
 using System;
 using Autodesk.Maya;
-using Autodesk.Maya.Runtime;
 using Autodesk.Maya.OpenMaya;
 
 // This line is mandatory to declare a new command in Maya
