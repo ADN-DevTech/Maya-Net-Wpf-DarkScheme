@@ -87,8 +87,8 @@ d) changing the window icon for the Maya icon (optional)
 The DAG Explorer samples
 ========================
 
-These 2 samples (MayaWpfPlugin and MayaWpfStandalone) are a reworked version of the Maya plugin wpfexamples.
-The plugin version was enhanced to preview multiple objects, with camera and lights. The standalone version 
+These 2 samples (MayaWpfPlugin and MayaWpfStandalone) are a reworked version of the Maya devkit plug-in wpfexamples.
+The plug-in version was enhanced to preview multiple objects, with camera and lights. The standalone version 
 is to demonstrate how to write a Maya standalone application using the Maya .NET API (they both use the Maya 
 Dark Scheme assembly present on this repo).
 
