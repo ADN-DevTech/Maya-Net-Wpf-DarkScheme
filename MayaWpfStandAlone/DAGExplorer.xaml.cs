@@ -26,6 +26,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Media.Media3D;
 using System.Diagnostics;
+using System.Reflection;
 
 using System.CodeDom.Compiler;
 using System.Reflection;
@@ -91,8 +92,10 @@ namespace Autodesk.Maya.Samples.MayaWpfStandAlone {
 				parameters.ReferencedAssemblies.Add ("System.Xml.dll");
 				parameters.ReferencedAssemblies.Add ("System.Xml.Linq.dll");
 
-				parameters.ReferencedAssemblies.Add ("openmayacpp.dll");
-				parameters.ReferencedAssemblies.Add ("openmayacs.dll");
+				//string dotNetSDKPath = AppDomain.CurrentDomain.BaseDirectory;
+				string dotNetSDKPath = System.IO.Path.GetDirectoryName (Assembly.GetAssembly (typeof (MObject)).Location) + @"\";
+				parameters.ReferencedAssemblies.Add (dotNetSDKPath + "openmayacpp.dll");
+				parameters.ReferencedAssemblies.Add (dotNetSDKPath + "openmayacs.dll");
 
 				CompilerResults results = compiler.CompileAssemblyFromSource (parameters, in_source);
 
@@ -444,6 +447,8 @@ dagpath.partialPathName.StartsWith(""collision"")";
 		}
 
 		public Material MakeMaterial (MFnMesh fnMesh) {
+			MaterialGroup matGroup = new MaterialGroup ();
+
 			MObjectArray shaders =new MObjectArray() ;
 			MIntArray indices = new MIntArray ();
 			fnMesh.getConnectedShaders(0, shaders, indices);
@@ -480,7 +485,6 @@ dagpath.partialPathName.StartsWith(""collision"")";
 					//float transparency = 1.0f - trPlug.child (0).asFloat ();
 					////return new DiffuseMaterial (new SolidColorBrush (Color.FromScRgb (transparency, mcolor.r, mcolor.g, mcolor.b)));
 
-					MaterialGroup matGroup = new MaterialGroup ();
 					//DiffuseMaterial diffuse =new DiffuseMaterial (new SolidColorBrush (Color.FromScRgb (transparency, mcolor.r, mcolor.g, mcolor.b)));
 					//colorPlug = depNode.findPlug ("ambientColor");
 					//mcolor.r = colorPlug.child (0).asFloat ();
@@ -568,14 +572,13 @@ dagpath.partialPathName.StartsWith(""collision"")";
 					//    //matGroup.Children.Add (emissive);
 					//} catch {
 					//}
-
-					if ( matGroup.Children.Count != 0 )
-						return (matGroup);
 				}
 			}
 
 			// Default to Blue
-			return new DiffuseMaterial (new SolidColorBrush (Color.FromRgb (0, 0, 255)));
+			if ( matGroup.Children.Count != 0 ) 
+				 matGroup.Children.Add (new DiffuseMaterial (new SolidColorBrush (Color.FromRgb (0, 0, 255))));
+			return (matGroup);
 		}
 
 		public GeometryModel3D MakeGeometryModel (Geometry3D geom, Material mat) {
