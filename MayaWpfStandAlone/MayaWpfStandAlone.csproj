@@ -58,7 +58,7 @@
   <ItemGroup>
     <Reference Include="MayaTheme, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Maya2014\bin\MayaTheme.dll</HintPath>
+      <HintPath>c:\Program Files\Autodesk\Maya2014\bin\MayaTheme.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="openmayacpp, Version=1.0.4762.3511, Culture=neutral, processorArchitecture=AMD64">
