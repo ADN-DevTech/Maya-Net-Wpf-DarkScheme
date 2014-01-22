@@ -40,8 +40,8 @@ namespace Autodesk.Maya.Samples.MayaWpfPlugin {
 
 	// Interaction logic for DAGExplorer.xaml
 	public partial class DAGExplorer : Window {
-		private bool _mouseDown =false ;
-		private Point _lastPos ;
+		private bool _mouseDown = false;
+		private Point _lastPos;
 		private bool _singleMeshPreviewed = true;
 
 		public DAGExplorer () {
@@ -49,7 +49,7 @@ namespace Autodesk.Maya.Samples.MayaWpfPlugin {
 		}
 
 		private void Window_Loaded (object sender, RoutedEventArgs e) {
-			AllPreset_Click (null, null) ;
+			AllPreset_Click (null, null);
 		}
 
 		private void Window_SizeChanged (object sender, SizeChangedEventArgs e) {
@@ -101,9 +101,9 @@ namespace Autodesk.Maya.Samples.MayaWpfPlugin {
 					foreach ( CompilerError err in results.Errors ) {
 						sErrors += err.ToString () + "\n";
 					}
-					sErrors +="\nImportant! because we compile and run code on the fly,\n"
+					sErrors += "\nImportant! because we compile and run code on the fly,\n"
 						+ "the current working directory *must* be the Maya directory where resides"
-						+ "the Maya API .NET assemblies (I.e. openmayacpp.dll / openmayacs.dll).\n" ;
+						+ "the Maya API .NET assemblies (I.e. openmayacpp.dll / openmayacs.dll).\n";
 					MessageBox.Show (sErrors, "DAG Explorer", MessageBoxButton.OK, MessageBoxImage.Error);
 				} else {
 					object o = results.CompiledAssembly.CreateInstance ("Script");
@@ -225,7 +225,7 @@ namespace Autodesk.Maya.Samples.MayaWpfPlugin {
 			var selected = MGlobal.activeSelectionList;
 			var it = new MItSelectionList (selected);
 			if ( it.isDone )
-				return (null) ;
+				return (null);
 			var path = new MDagPath ();
 			it.getDagPath (path);
 			return path;
@@ -397,7 +397,7 @@ dagpath.partialPathName.StartsWith(""collision"")";
 			e.Handled = true;
 			if ( TabControl1.SelectedIndex == 1 ) { // If the result view was selected
 				if ( !ResultGrid.HasItems )
-					SearchButton_Click (null, null) ;
+					SearchButton_Click (null, null);
 				return;
 			}
 			if ( TabControl1.SelectedIndex == 2 ) { // If the 3D view was selected
@@ -420,7 +420,7 @@ dagpath.partialPathName.StartsWith(""collision"")";
 				//    }
 				//}
 				using ( new CursorSwitcher (null) ) {
-					_singleMeshPreviewed =MGlobal.activeSelectionList.length == 1 ;
+					_singleMeshPreviewed = MGlobal.activeSelectionList.length == 1;
 					MItSelectionList it = new MItSelectionList (MGlobal.activeSelectionList);
 					for ( ; !it.isDone ; it.next () ) {
 						MDagPath path = new MDagPath ();
@@ -444,16 +444,16 @@ dagpath.partialPathName.StartsWith(""collision"")";
 		}
 
 		public Material MakeMaterial (MFnMesh fnMesh) {
-			MObjectArray shaders =new MObjectArray() ;
+			MObjectArray shaders = new MObjectArray ();
 			MIntArray indices = new MIntArray ();
-			fnMesh.getConnectedShaders(0, shaders, indices);
-			for ( int i =0 ; i < shaders.length ; i++ ) {
-				MFnDependencyNode shaderGroup = new MFnDependencyNode (shaders [i]) ;
+			fnMesh.getConnectedShaders (0, shaders, indices);
+			for ( int i = 0 ; i < shaders.length ; i++ ) {
+				MFnDependencyNode shaderGroup = new MFnDependencyNode (shaders [i]);
 				MPlug shaderPlug = shaderGroup.findPlug ("surfaceShader");
-				MPlugArray connections = new MPlugArray (); 
+				MPlugArray connections = new MPlugArray ();
 				shaderPlug.connectedTo (connections, true, false);
-				for ( int u =0 ; u < connections.length ; u++ ) {
-					MFnDependencyNode depNode =new MFnDependencyNode (connections[u].node) ;
+				for ( int u = 0 ; u < connections.length ; u++ ) {
+					MFnDependencyNode depNode = new MFnDependencyNode (connections [u].node);
 
 					//MPlug colorPlug = depNode.findPlug ("color");
 					//MColor mcolor =new MColor ();
@@ -501,24 +501,76 @@ dagpath.partialPathName.StartsWith(""collision"")";
 					//EmissiveMaterial emissive = new EmissiveMaterial ();
 					//matGroup.Children.Add (emissive);
 
-					MFnPhongShader phong = new MFnPhongShader (connections [u].node);
+					try {
+						MFnLambertShader lambert = new MFnLambertShader (connections [u].node);
 
-					SolidColorBrush brush = new SolidColorBrush (Color.FromScRgb (1.0f - phong.transparency.r, phong.color.r, phong.color.g, phong.color.b));
-					brush.Opacity =1.0f - phong.transparency.r;
-					DiffuseMaterial diffuse = new DiffuseMaterial (brush);
-					diffuse.AmbientColor = Color.FromScRgb (phong.ambientColor.a, phong.ambientColor.r, phong.ambientColor.g, phong.ambientColor.b);
-					// no more attributes
-					matGroup.Children.Add (diffuse);
+						SolidColorBrush brush = new SolidColorBrush (Color.FromScRgb (1.0f - lambert.transparency.r, lambert.color.r, lambert.color.g, lambert.color.b));
+						brush.Opacity = 1.0f - lambert.transparency.r;
+						DiffuseMaterial diffuse = new DiffuseMaterial (brush);
+						diffuse.AmbientColor = Color.FromScRgb (1.0f - lambert.ambientColor.a, lambert.ambientColor.r, lambert.ambientColor.g, lambert.ambientColor.b);
+						// no more attributes
+						matGroup.Children.Add (diffuse);
 
-					SpecularMaterial specular = new SpecularMaterial (new SolidColorBrush (Color.FromScRgb (phong.specularColor.a, phong.specularColor.r, phong.specularColor.g, phong.specularColor.b)), phong.cosPower);
-					// no more attributes
-					matGroup.Children.Add (specular);
+						// No specular color
 
-					EmissiveMaterial emissive = new EmissiveMaterial (new SolidColorBrush (Color.FromScRgb (phong.reflectedColor.a, phong.reflectedColor.r, phong.reflectedColor.g, phong.reflectedColor.b)));
-					// no more attributes
-					matGroup.Children.Add (emissive);
+						EmissiveMaterial emissive = new EmissiveMaterial (new SolidColorBrush (Color.FromScRgb (1.0f - lambert.incandescence.a, lambert.incandescence.r, lambert.incandescence.g, lambert.incandescence.b)));
+						// no more attributes
+						matGroup.Children.Add (emissive);
+					} catch {
+					}
 
-					return (matGroup);
+					//try {
+					//    MFnReflectShader reflect = new MFnReflectShader (connections [u].node);
+
+					//    SpecularMaterial specular = new SpecularMaterial (new SolidColorBrush (Color.FromScRgb (1.0f - reflect.specularColor.a, reflect.specularColor.r, reflect.specularColor.g, reflect.specularColor.b)), reflect.cosPower);
+					//    // no more attributes
+					//    matGroup.Children.Add (specular);
+					//} catch {
+					//}
+
+					try {
+						MFnPhongShader phong = new MFnPhongShader (connections [u].node);
+
+						//See Lambert
+						//SolidColorBrush brush = new SolidColorBrush (Color.FromScRgb (1.0f - phong.transparency.r, phong.color.r, phong.color.g, phong.color.b));
+						//brush.Opacity = 1.0f - phong.transparency.r;
+						//DiffuseMaterial diffuse = new DiffuseMaterial (brush);
+						//diffuse.AmbientColor = Color.FromScRgb (1.0f - phong.ambientColor.a, phong.ambientColor.r, phong.ambientColor.g, phong.ambientColor.b);
+						//// no more attributes
+						//matGroup.Children.Add (diffuse);
+
+						SpecularMaterial specular = new SpecularMaterial (new SolidColorBrush (Color.FromScRgb (1.0f - phong.specularColor.a, phong.specularColor.r, phong.specularColor.g, phong.specularColor.b)), phong.cosPower);
+						// no more attributes
+						matGroup.Children.Add (specular);
+
+						//See Lambert
+						//EmissiveMaterial emissive = new EmissiveMaterial (new SolidColorBrush (Color.FromScRgb (1.0f - phong.incandescence.a, phong.incandescence.r, phong.incandescence.g, phong.incandescence.b)));
+						//// no more attributes
+						//matGroup.Children.Add (emissive);
+					} catch {
+					}
+
+					// todo
+					//try {
+					//    MFnBlinnShader phong = new MFnBlinnShader (connections [u].node);
+
+					//    //See Lambert
+					//    //SolidColorBrush brush = new SolidColorBrush (Color.FromScRgb (1.0f - phong.transparency.r, phong.color.r, phong.color.g, phong.color.b));
+					//    //brush.Opacity = 1.0f - phong.transparency.r;
+					//    //DiffuseMaterial diffuse = new DiffuseMaterial (brush);
+					//    //diffuse.AmbientColor = Color.FromScRgb (1.0f - phong.ambientColor.a, phong.ambientColor.r, phong.ambientColor.g, phong.ambientColor.b);
+					//    //// no more attributes
+					//    //matGroup.Children.Add (diffuse);
+
+					//    //See Lambert
+					//    //EmissiveMaterial emissive = new EmissiveMaterial (new SolidColorBrush (Color.FromScRgb (1.0f - phong.incandescence.a, phong.incandescence.r, phong.incandescence.g, phong.incandescence.b)));
+					//    //// no more attributes
+					//    //matGroup.Children.Add (emissive);
+					//} catch {
+					//}
+
+					if ( matGroup.Children.Count != 0 )
+						return (matGroup);
 				}
 			}
 
@@ -556,14 +608,14 @@ dagpath.partialPathName.StartsWith(""collision"")";
 			//ScaleTransform3D scale = new ScaleTransform3D (scales [0], scales [1], scales [2]);
 			//transformGroup.Children.Add (scale);
 
-			MMatrix mat =matrix.asMatrixProperty ;
+			MMatrix mat = matrix.asMatrixProperty;
 			Matrix3D matrix3d = new Matrix3D (mat [0, 0], mat [0, 1], mat [0, 2], mat [0, 3],
 											 mat [1, 0], mat [1, 1], mat [1, 2], mat [1, 3],
 											 mat [2, 0], mat [2, 1], mat [2, 2], mat [2, 3],
 											 mat [3, 0], mat [3, 1], mat [3, 2], mat [3, 3]);
 			MatrixTransform3D matrixTransform = new MatrixTransform3D (matrix3d);
 			transformGroup.Children.Add (matrixTransform);
-			
+
 			return r;
 		}
 
@@ -684,7 +736,7 @@ dagpath.partialPathName.StartsWith(""collision"")";
 
 		private void Grid_MouseMove (object sender, MouseEventArgs e) {
 			if ( !_mouseDown )
-				return ;
+				return;
 			Point pos = Mouse.GetPosition (viewport);
 			Point actualPos = new Point (pos.X - viewport.ActualWidth / 2, viewport.ActualHeight / 2 - pos.Y);
 			double dx = actualPos.X - _lastPos.X, dy = actualPos.Y - _lastPos.Y;

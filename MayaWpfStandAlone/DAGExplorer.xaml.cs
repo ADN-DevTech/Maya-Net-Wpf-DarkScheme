@@ -501,24 +501,76 @@ dagpath.partialPathName.StartsWith(""collision"")";
 					//EmissiveMaterial emissive = new EmissiveMaterial ();
 					//matGroup.Children.Add (emissive);
 
-					MFnPhongShader phong = new MFnPhongShader (connections [u].node);
+					try {
+						MFnLambertShader lambert = new MFnLambertShader (connections [u].node);
 
-					SolidColorBrush brush = new SolidColorBrush (Color.FromScRgb (1.0f - phong.transparency.r, phong.color.r, phong.color.g, phong.color.b));
-					brush.Opacity =1.0f - phong.transparency.r;
-					DiffuseMaterial diffuse = new DiffuseMaterial (brush);
-					diffuse.AmbientColor = Color.FromScRgb (phong.ambientColor.a, phong.ambientColor.r, phong.ambientColor.g, phong.ambientColor.b);
-					// no more attributes
-					matGroup.Children.Add (diffuse);
+						SolidColorBrush brush = new SolidColorBrush (Color.FromScRgb (1.0f - lambert.transparency.r, lambert.color.r, lambert.color.g, lambert.color.b));
+						brush.Opacity = 1.0f - lambert.transparency.r;
+						DiffuseMaterial diffuse = new DiffuseMaterial (brush);
+						diffuse.AmbientColor = Color.FromScRgb (1.0f - lambert.ambientColor.a, lambert.ambientColor.r, lambert.ambientColor.g, lambert.ambientColor.b);
+						// no more attributes
+						matGroup.Children.Add (diffuse);
 
-					SpecularMaterial specular = new SpecularMaterial (new SolidColorBrush (Color.FromScRgb (phong.specularColor.a, phong.specularColor.r, phong.specularColor.g, phong.specularColor.b)), phong.cosPower);
-					// no more attributes
-					matGroup.Children.Add (specular);
+						// No specular color
 
-					EmissiveMaterial emissive = new EmissiveMaterial (new SolidColorBrush (Color.FromScRgb (phong.reflectedColor.a, phong.reflectedColor.r, phong.reflectedColor.g, phong.reflectedColor.b)));
-					// no more attributes
-					matGroup.Children.Add (emissive);
+						EmissiveMaterial emissive = new EmissiveMaterial (new SolidColorBrush (Color.FromScRgb (1.0f - lambert.incandescence.a, lambert.incandescence.r, lambert.incandescence.g, lambert.incandescence.b)));
+						// no more attributes
+						matGroup.Children.Add (emissive);
+					} catch {
+					}
 
-					return (matGroup);
+					//try {
+					//    MFnReflectShader reflect = new MFnReflectShader (connections [u].node);
+
+					//    SpecularMaterial specular = new SpecularMaterial (new SolidColorBrush (Color.FromScRgb (1.0f - reflect.specularColor.a, reflect.specularColor.r, reflect.specularColor.g, reflect.specularColor.b)), reflect.cosPower);
+					//    // no more attributes
+					//    matGroup.Children.Add (specular);
+					//} catch {
+					//}
+					
+					try {
+						MFnPhongShader phong = new MFnPhongShader (connections [u].node);
+
+						//See Lambert
+						//SolidColorBrush brush = new SolidColorBrush (Color.FromScRgb (1.0f - phong.transparency.r, phong.color.r, phong.color.g, phong.color.b));
+						//brush.Opacity = 1.0f - phong.transparency.r;
+						//DiffuseMaterial diffuse = new DiffuseMaterial (brush);
+						//diffuse.AmbientColor = Color.FromScRgb (1.0f - phong.ambientColor.a, phong.ambientColor.r, phong.ambientColor.g, phong.ambientColor.b);
+						//// no more attributes
+						//matGroup.Children.Add (diffuse);
+
+						SpecularMaterial specular = new SpecularMaterial (new SolidColorBrush (Color.FromScRgb (1.0f - phong.specularColor.a, phong.specularColor.r, phong.specularColor.g, phong.specularColor.b)), phong.cosPower);
+						// no more attributes
+						matGroup.Children.Add (specular);
+
+						//See Lambert
+						//EmissiveMaterial emissive = new EmissiveMaterial (new SolidColorBrush (Color.FromScRgb (1.0f - phong.incandescence.a, phong.incandescence.r, phong.incandescence.g, phong.incandescence.b)));
+						//// no more attributes
+						//matGroup.Children.Add (emissive);
+					} catch {
+					}
+
+					// todo
+					//try {
+					//    MFnBlinnShader phong = new MFnBlinnShader (connections [u].node);
+
+					//    //See Lambert
+					//    //SolidColorBrush brush = new SolidColorBrush (Color.FromScRgb (1.0f - phong.transparency.r, phong.color.r, phong.color.g, phong.color.b));
+					//    //brush.Opacity = 1.0f - phong.transparency.r;
+					//    //DiffuseMaterial diffuse = new DiffuseMaterial (brush);
+					//    //diffuse.AmbientColor = Color.FromScRgb (1.0f - phong.ambientColor.a, phong.ambientColor.r, phong.ambientColor.g, phong.ambientColor.b);
+					//    //// no more attributes
+					//    //matGroup.Children.Add (diffuse);
+
+					//    //See Lambert
+					//    //EmissiveMaterial emissive = new EmissiveMaterial (new SolidColorBrush (Color.FromScRgb (1.0f - phong.incandescence.a, phong.incandescence.r, phong.incandescence.g, phong.incandescence.b)));
+					//    //// no more attributes
+					//    //matGroup.Children.Add (emissive);
+					//} catch {
+					//}
+
+					if ( matGroup.Children.Count != 0 )
+						return (matGroup);
 				}
 			}
 
