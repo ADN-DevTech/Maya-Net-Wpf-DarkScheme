@@ -22,7 +22,7 @@ using System.Windows;
 using Autodesk.Maya.OpenMaya;
 using Autodesk.Maya;
 
-// Important! because we compile and run code on the fly, the current working directory *must* be
+// Important! because Maya .NET assemblies aren;t signed and not in the GAC the executable should be in
 // the Maya directory where resides the Maya API .NET assemblies (I.e. openmayacpp.dll / openmayacs.dll).
 
 // and create a PostBuild event like this:

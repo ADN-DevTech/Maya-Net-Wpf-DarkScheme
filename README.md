@@ -21,6 +21,7 @@ UNINTERRUPTED OR ERROR FREE.
 Maya-Net-Wpf-DarkScheme
 =======================
 Maya .Net Dark Scheme for WPF
+[see also the blog post here](http://around-the-corner.typepad.com/adn/2014/01/applying-the-maya-dark-color-scheme-to-wpf.html)
 
 
 The MayaTheme assembly provides the XAML definition to replicate the Maya Dark Color Scheme on WPF Window/Control.
@@ -88,18 +89,17 @@ The DAG Explorer samples
 ========================
 
 These 2 samples (MayaWpfPlugin and MayaWpfStandalone) are a reworked version of the Maya devkit plug-in wpfexamples.
-The plug-in version was enhanced to preview multiple objects, with camera and lights. The standalone version 
+The plug-in version was enhanced to preview multiple objects, with camera, shaders and lights. The standalone version 
 is to demonstrate how to write a Maya standalone application using the Maya .NET API (they both use the Maya 
 Dark Scheme assembly present on this repo).
 
-
-<b>*Important!*</b> because we compile and run C# code on the fly, the current working directory <b>*must*</b> be 
-the Maya directory where resides the Maya API .NET assemblies (I.e. openmayacpp.dll / openmayacs.dll). 
-Do not forget to set your debugger working directory otherwise the 'Search' button will fail. 
-And create a PostBuild event like this:
+For the standalone sample.
+<b>*Important!*</b> because Maya .NET assemblies aren;t signed and not in the GAC the executable should be in 
+the Maya directory where resides the Maya API .NET assemblies (I.e. openmayacpp.dll / openmayacs.dll).
+For example, create a PostBuild event like this:
 
     copy "$(TargetPath)" "C:\Program Files\Autodesk\Maya2014\bin"
-
+	
 
 --------
 Written by Cyrille Fauvel (Autodesk Developer Network)  

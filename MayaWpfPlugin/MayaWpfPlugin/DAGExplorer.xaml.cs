@@ -575,7 +575,7 @@ dagpath.partialPathName.StartsWith(""collision"")";
 			}
 
 			// Default to Blue
-			if ( matGroup.Children.Count != 0 )
+			if ( matGroup.Children.Count == 0 )
 				matGroup.Children.Add (new DiffuseMaterial (new SolidColorBrush (Color.FromRgb (0, 0, 255))));
 			return (matGroup);
 		}

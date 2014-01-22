@@ -18,12 +18,6 @@ using Autodesk.Maya.OpenMaya;
 // This line is not mandatory, but improves loading performances
 [assembly: ExtensionPlugin (typeof (Autodesk.Maya.Samples.MayaWpfPlugin.MyPlugin))]
 
-// Important! because we compile and run code on the fly, the current working directory *must* be
-// the Maya directory where resides the Maya API .NET assemblies (I.e. openmayacpp.dll / openmayacs.dll).
-
-// and create a PostBuild event like this:
-//		copy "$(TargetPath)" "C:\Program Files\Autodesk\Maya2014\bin"
-
 namespace Autodesk.Maya.Samples.MayaWpfPlugin {
 
 	// This class is instantiated by Maya once and kept alive for the 
