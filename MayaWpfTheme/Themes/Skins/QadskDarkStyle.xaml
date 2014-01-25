@@ -1820,7 +1820,7 @@
 	<ControlTemplate x:Key="ContextMenuTemplate" TargetType="{x:Type ContextMenu}">
 		<Grid>
 			<Border x:Name="Border"  Margin="0" BorderBrush="Transparent" BorderThickness="0" />
-			<StackPanel Background="{TemplateBinding Background}" IsItemsHost="True" ClipToBounds="True" Orientation="Horizontal" />
+			<StackPanel Background="{TemplateBinding Background}" IsItemsHost="True" ClipToBounds="True" Orientation="Vertical" />
 		</Grid>
 		<ControlTemplate.Triggers>
 			<Trigger Property="IsEnabled" Value="False">
