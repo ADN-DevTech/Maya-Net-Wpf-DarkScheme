@@ -56,11 +56,6 @@
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MayaTheme, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>c:\Program Files\Autodesk\Maya2014\bin\MayaTheme.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="openmayacpp, Version=1.0.4762.3511, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files\Autodesk\Maya2014\bin\openmayacpp.dll</HintPath>
@@ -92,6 +87,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CameraHelper.cs" />
+    <Compile Include="CSharpScripting.cs" />
+    <Compile Include="CursorSwitcher.cs" />
+    <Compile Include="HWNDWrapper.cs" />
+    <Compile Include="Maya.cs" />
+    <Compile Include="TriangleMeshAdapter.cs" />
+    <Compile Include="Viewport.cs" />
+    <Compile Include="ViewportHelper.cs" />
     <Page Include="DAGExplorer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -110,6 +113,10 @@
       <DependentUpon>DAGExplorer.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -137,6 +144,28 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ambiantlightOff.png" />
+    <Resource Include="Images\ambiantlightOn.png" />
+    <Resource Include="Images\dirlightOff.png" />
+    <Resource Include="Images\dirlightOn.png" />
+    <Resource Include="Images\home.png" />
+    <Resource Include="Images\homehighlighted.png" />
+    <Resource Include="Images\smoothshade.png" />
+    <Resource Include="Images\textured.png" />
+    <Resource Include="Images\wireframe.png" />
+    <Resource Include="Images\wireframeonshaded.png" />
+    <Resource Include="Images\yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\cube.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MayaWpfTheme\MayaWpfTheme.csproj">
+      <Project>{aac44831-3367-4312-bea5-0187db566d64}</Project>
+      <Name>MayaWpfTheme</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

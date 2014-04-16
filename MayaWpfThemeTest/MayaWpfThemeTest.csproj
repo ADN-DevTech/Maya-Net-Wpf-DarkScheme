@@ -49,6 +49,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <NoWarn>
+    </NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="openmayacpp">
@@ -98,16 +100,16 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\MayaWpfTheme\MayaWpfTheme.csproj">
-      <Project>{AAC44831-3367-4312-BEA5-0187DB566D64}</Project>
-      <Name>MayaWpfTheme</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Page Include="WpfThemeTestWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MayaWpfTheme\MayaWpfTheme.csproj">
+      <Project>{aac44831-3367-4312-bea5-0187db566d64}</Project>
+      <Name>MayaWpfTheme</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

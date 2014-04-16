@@ -52,11 +52,6 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MayaTheme, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>c:\Program Files\Autodesk\Maya2014\bin\MayaTheme.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="openmayacpp">
       <HintPath>$(MAYA_LOCATION)\bin\openmayacpp.dll</HintPath>
       <HintPath>c:\Program Files\Autodesk\Maya2014\bin\openmayacpp.dll</HintPath>
@@ -120,6 +115,12 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MayaWpfTheme\MayaWpfTheme.csproj">
+      <Project>{aac44831-3367-4312-bea5-0187db566d64}</Project>
+      <Name>MayaWpfTheme</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

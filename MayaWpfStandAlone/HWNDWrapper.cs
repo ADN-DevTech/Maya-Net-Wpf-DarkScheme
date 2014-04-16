@@ -10,30 +10,26 @@
 
 //- Written by Cyrille Fauvel, Autodesk Developer Network (ADN)
 //- http://www.autodesk.com/joinadn
-//- December 30th, 2013
+//- January 20th, 2014
 //
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
-namespace MayaWpfThemeTest {
-	/// <summary>
-	/// Interaction logic for WpfThemeTestWindow.xaml
-	/// </summary>
-	public partial class WpfThemeTestWindow : Window {
+namespace Autodesk.Maya.Samples.MayaWpfStandAlone {
 
-		public WpfThemeTestWindow () {
-			InitializeComponent ();
+	// Wrapper for the IntPtr/IWin32Window
+	public class HWNDWrapper : System.Windows.Forms.IWin32Window {
+		private IntPtr hwnd ;
+
+		public HWNDWrapper (IntPtr h) {
+			hwnd =h ;
 		}
 
+		public IntPtr Handle {
+			get {
+				return (hwnd) ;
+			}
+		}
 	}
+
 }

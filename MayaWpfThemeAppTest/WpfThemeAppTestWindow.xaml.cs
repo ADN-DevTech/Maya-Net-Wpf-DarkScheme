@@ -1,5 +1,4 @@
-﻿<!--
-// (C) Copyright 2014 by Autodesk, Inc.
+﻿// (C) Copyright 2014 by Autodesk, Inc.
 //
 // Permission to use, copy, modify, and distribute this software in
 // object code form for any purpose and without fee is hereby granted, 
@@ -18,13 +17,27 @@
 //- http://www.autodesk.com/joinadn
 //- December 30th, 2013
 //
--->
-<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
-                    x:Class="Autodesk.Maya.MayaStyle">
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
-    <ResourceDictionary.MergedDictionaries>
-    </ResourceDictionary.MergedDictionaries>
+namespace MayaWpfThemeAppTest {
 
-</ResourceDictionary>
+	public partial class WpfThemeAppTestWindow : Window {
+
+		public WpfThemeAppTestWindow () {
+			InitializeComponent () ;
+		}
+
+
+	}
+}

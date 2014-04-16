@@ -1,5 +1,4 @@
-﻿<!--
-// (C) Copyright 2014 by Autodesk, Inc.
+﻿// (C) Copyright 2014 by Autodesk, Inc.
 //
 // Permission to use, copy, modify, and distribute this software in
 // object code form for any purpose and without fee is hereby granted, 
@@ -18,13 +17,28 @@
 //- http://www.autodesk.com/joinadn
 //- December 30th, 2013
 //
--->
-<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
-                    x:Class="Autodesk.Maya.MayaStyle">
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Linq;
+using System.Windows;
+using Autodesk.Maya;
 
-    <ResourceDictionary.MergedDictionaries>
-    </ResourceDictionary.MergedDictionaries>
+namespace MayaWpfThemeAppTest {
 
-</ResourceDictionary>
+	public partial class App : Application {
+
+		public void App_Startup (object sender, StartupEventArgs args) {
+			try {
+				bool bSuccess =MayaTheme.Initialize (this) ;
+
+			} catch ( System.Exception ex ) {
+				MessageBox.Show (ex.Message, "Error during initialization. This program will exit") ;
+				Application.Current.Shutdown () ;
+			}
+		}
+
+	}
+
+}

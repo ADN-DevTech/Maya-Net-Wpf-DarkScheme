@@ -37,41 +37,41 @@ namespace Autodesk.Maya.Samples.MayaWpfStandAlone {
 
 		void App_Startup(object sender, StartupEventArgs e) {
 			try {
-				MLibrary.initialize ("MayaWpfStandAlone");
-				bool bSuccess =MayaTheme.Initialize (this);
+				MLibrary.initialize ("MayaWpfStandAlone") ;
+				bool bSuccess =MayaTheme.Initialize (this) ;
 
-				string fileName;
-				string [] args = Environment.GetCommandLineArgs ();
+				string fileName ;
+				string [] args = Environment.GetCommandLineArgs () ;
 				if ( args.Length <= 1 ) {
-					Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog ();
-					dlg.FileName = "Maya Files"; // Default file name
-					dlg.DefaultExt = ".ma"; // Default file extension
-					dlg.Filter = "Maya Files (.ma/.mb)|*.ma;*.mb|Maya ASCII (.ma)|*.ma|Maya Binary (.mb)|*.mb|All files (*.*)|*.*";
-					Nullable<bool> result = dlg.ShowDialog ();
+					Microsoft.Win32.OpenFileDialog dlg =new Microsoft.Win32.OpenFileDialog () ;
+					dlg.FileName ="Maya Files" ; // Default file name
+					dlg.DefaultExt =".ma" ; // Default file extension
+					dlg.Filter ="Maya Files (.ma/.mb)|*.ma;*.mb|Maya ASCII (.ma)|*.ma|Maya Binary (.mb)|*.mb|All files (*.*)|*.*" ;
+					Nullable<bool> result =dlg.ShowDialog () ;
 					if ( result == true )
-						fileName = dlg.FileName;
+						fileName =dlg.FileName ;
 					else
-						return;
+						return ;
 				} else {
-					fileName = args [1];
+					fileName =args [1] ;
 				}
 
-				MFileIO.newFile(true);
-				fileName =fileName.Replace ('\\', '/');
-				MFileIO.open(fileName);
+				MFileIO.newFile (true) ;
+				fileName =fileName.Replace ('\\', '/') ;
+				MFileIO.open (fileName) ;
 
 			} catch (System.Exception ex) {
-				MessageBox.Show (ex.Message, "Error during Maya API initialization. This program will exit");
-				Application.Current.Shutdown ();
+				MessageBox.Show (ex.Message, "Error during Maya API initialization. This program will exit") ;
+				Application.Current.Shutdown () ;
 			}
 		}
 
 		void App_Exit(object sender, ExitEventArgs e) {
 			try {
-				MLibrary.cleanup();
+				MLibrary.cleanup () ;
 			} catch ( System.Exception ex ) {
-				MessageBox.Show (ex.Message, "Error during Maya API cleanup");
-				return;
+				MessageBox.Show (ex.Message, "Error during Maya API cleanup") ;
+				return ;
 			}
 		}
 
