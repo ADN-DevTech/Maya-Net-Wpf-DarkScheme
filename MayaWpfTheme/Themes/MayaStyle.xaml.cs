@@ -23,14 +23,13 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Shapes;
 
-namespace Autodesk.Maya {
-
-	public partial class MayaStyle : ResourceDictionary {
-
-		public MayaStyle () {
-			InitializeComponent () ;
-		}
-
-	}
-
+namespace Autodesk.Maya
+{
+    public partial class MayaStyle : ResourceDictionary
+    {
+        public MayaStyle()
+        {
+            InitializeComponent();
+        }
+    }
 }

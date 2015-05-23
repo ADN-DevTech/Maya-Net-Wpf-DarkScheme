@@ -19,23 +19,16 @@
 //- December 30th, 2013
 //
 -->
-<Application
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-			 x:Class="MayaWpfThemeAppTest.App"
-			 Startup="App_Startup"
+             x:Class="MayaWpfThemeAppTest.App"
              StartupUri="WpfThemeAppTestWindow.xaml">
-	<Application.Resources>
-
-		<ResourceDictionary>
-
-			<ResourceDictionary.MergedDictionaries>
-				<!-- Set default skin -->
-				<ResourceDictionary Source="/MayaTheme;component/Themes/Skins/QadskDarkStyle.xaml" />
-				<ResourceDictionary Source="/MayaTheme;component/Themes/MayaStyle.xaml" />
-			</ResourceDictionary.MergedDictionaries>
-
-		</ResourceDictionary>
-
-	</Application.Resources>
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/MayaTheme;component/Themes/Skins/QadskDarkStyle.xaml" />
+                <ResourceDictionary Source="/MayaTheme;component/Themes/MayaStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
 </Application>
