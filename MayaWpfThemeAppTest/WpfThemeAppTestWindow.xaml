@@ -22,10 +22,14 @@
 <Window x:Class="MayaWpfThemeAppTest.WpfThemeAppTestWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-		DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Title="Maya Theme Test" 
-		Height="900" Width="900"
-		Left="10" Top="10"
+        Height="900" Width="920"
+        WindowStartupLocation="CenterScreen" WindowState="Normal"
+        SnapsToDevicePixels="True" UseLayoutRounding="True"
+        TextOptions.TextFormattingMode="Display"
+        TextOptions.TextHintingMode="Auto"
+        TextOptions.TextRenderingMode="Auto"
         Style="{DynamicResource MayaStyle}">
 
     <!-- Background="{DynamicResource WindowBrush}" -->
@@ -33,7 +37,7 @@
 
         <Canvas>
 
-            <Menu Canvas.Top="40" Canvas.Left="18" Width="600">
+            <Menu>
                 <MenuItem Header="Top One">
                     <MenuItem Header="Sub One" InputGestureText="Ctrl+L" />
                     <MenuItem Header="Sub Two" InputGestureText="Ctrl+A">
