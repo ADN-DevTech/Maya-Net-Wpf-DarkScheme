@@ -17,29 +17,29 @@
 //- http://www.autodesk.com/joinadn
 //- December 30th, 2013
 //
-using System ;
-using System.Collections.Generic ;
-using System.Configuration ;
-using System.Data ;
-using System.Linq ;
-using System.Windows ;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Linq;
+using System.Windows;
 
-namespace Autodesk.Maya {
+namespace Autodesk.Maya
+{
+    public partial class App : Application
+    {
+        public App()
+        {
+            InitializeComponent();
+        }
 
-	public partial class App : Application {
-
-		public App () {
-			InitializeComponent () ;
-		}
-
-		// If you shut down the window you cannot restart due to "The Application object is being shut down".
-		// http://drwpf.com/blog/2007/10/05/managing-application-resources-when-wpf-is-hosted/
-		// Submitted by David Wright
-		protected override void OnStartup (StartupEventArgs e) {
-			base.OnStartup (e) ;
-			ShutdownMode =System.Windows.ShutdownMode.OnExplicitShutdown ;
-		}
-
-	}
-
+        // If you shut down the window you cannot restart due to "The Application object is being shut down".
+        // http://drwpf.com/blog/2007/10/05/managing-application-resources-when-wpf-is-hosted/
+        // Submitted by David Wright
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            ShutdownMode = System.Windows.ShutdownMode.OnExplicitShutdown;
+        }
+    }
 }

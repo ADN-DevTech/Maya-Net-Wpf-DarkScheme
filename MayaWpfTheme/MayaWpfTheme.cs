@@ -24,32 +24,33 @@ using System.Text;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
-namespace Autodesk.Maya {
+namespace Autodesk.Maya
+{
+    public class MayaTheme
+    {
+        public static Application _app = null;
 
-	public class MayaTheme {
-		public static Application _app = null;
+        public static bool Initialize(Application app)
+        {
+            if (_app == null && app == null)
+                _app = new App();
+            else if (app != null)
+                _app = app;
 
-		public static bool Initialize (Application app) {
-			 if ( _app == null && app == null )
-				_app = new App ();
-			else if ( app != null )
-				_app = app ;
+            if (Application.ResourceAssembly == null)
+                Application.ResourceAssembly = typeof(MayaTheme).Assembly;
 
-			if ( Application.ResourceAssembly == null )
-				Application.ResourceAssembly = typeof (MayaTheme).Assembly;
+            return (true);
+        }
 
-			return (true);
-		}
-
-		public static bool SetMayaIcon (Window window) {
-			//string [] test =typeof (MayaTheme).Assembly.GetManifestResourceNames () ;
-			// Need to be an embedded resources
-			System.IO.Stream file =typeof (MayaTheme).Assembly.GetManifestResourceStream ("MayaTheme.Resources.maya.ico") ;
-			var icon =BitmapFrame.Create (file) ;
-			window.Icon =icon ;
-			return (true) ;
-		}
-
-	}
-
+        public static bool SetMayaIcon(Window window)
+        {
+            //string [] test =typeof (MayaTheme).Assembly.GetManifestResourceNames () ;
+            // Need to be an embedded resources
+            System.IO.Stream file = typeof(MayaTheme).Assembly.GetManifestResourceStream("MayaTheme.Resources.maya.ico");
+            var icon = BitmapFrame.Create(file);
+            window.Icon = icon;
+            return (true);
+        }
+    }
 }

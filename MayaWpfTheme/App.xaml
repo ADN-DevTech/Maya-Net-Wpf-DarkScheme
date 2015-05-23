@@ -25,15 +25,10 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-
-                <!-- Set default skin -->
                 <ResourceDictionary Source="Themes\Skins\QadskDarkStyle.xaml"/>
                 <ResourceDictionary Source="Themes\MayaStyle.xaml"/>
-                
             </ResourceDictionary.MergedDictionaries>
-
             <!-- common:SettingConverter x:Key="SettingConv"></common:SettingConverter -->
-            
         </ResourceDictionary>
-	</Application.Resources>
+    </Application.Resources>
 </Application>
