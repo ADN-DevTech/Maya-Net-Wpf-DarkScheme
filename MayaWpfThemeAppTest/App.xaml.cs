@@ -29,17 +29,5 @@ namespace MayaWpfThemeAppTest
 {
     public partial class App : Application
     {
-        public void App_Startup(object sender, StartupEventArgs args)
-        {
-            try
-            {
-                bool bSuccess = MayaTheme.Initialize(this);
-            }
-            catch (System.Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error during initialization. This program will exit");
-                Application.Current.Shutdown();
-            }
-        }
     }
 }
