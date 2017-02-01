@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Autodesk.Maya.Theme</id>
+    <version>0.1.0</version>
+    <authors>cyrille</authors>
+    <owners>cyrille</owners>
+    <licenseUrl>https://github.com/ADN-DevTech/Maya-Net-Wpf-DarkScheme/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/ADN-DevTech/Maya-Net-Wpf-DarkScheme</projectUrl>
+    <iconUrl>http://area.autodesk.com/area_v2/assets/img/product/autodesk-maya.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Maya .Net Dark Scheme for WPF http://around-the-corner.typepad.com/</description>
+    <releaseNotes>Initial release.</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>autodesk maya dark scheme xaml wpf</tags>
+    <dependencies>
+    </dependencies>
+  </metadata>
+</package>
